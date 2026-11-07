@@ -1,0 +1,30 @@
+name: Dependency Audit & Security Check
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Weekly on Mondays at midnight
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: pnpm Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.11.2
+
+      - name: Setup Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=high
+        continue-on-error: true
