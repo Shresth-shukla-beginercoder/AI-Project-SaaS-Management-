@@ -4,6 +4,16 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Debug Web (Vite)",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "dev:web"],
+      "console": "integratedTerminal",
+      "restart": true,
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Debug API (NestJS)",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["run", "dev:api"],
